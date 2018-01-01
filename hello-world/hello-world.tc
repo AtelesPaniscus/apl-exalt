@@ -1,0 +1,17 @@
+log←'./hello-world.tc.log'
+⍎ ')COPY ',(⎕FIO 30),'/../../test.apl'
+
+test∆copy_relative 'hello-world.apl'
+test∆clear_log log
+
+⍝ check test version
+  1⎕CR	(version)
+'1.0.0'
+
+⍝ ∇hello
+
+⍝ Say Hi!
+  (hello) ≡ 'Hello, World!'
+1
+
+test∆show_log log
