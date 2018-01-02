@@ -1,0 +1,29 @@
+log←'./leap.tc.log'
+⍎ ')COPY ',(⎕FIO 30),'/../../test.apl'
+
+test∆copy_relative 'leap.apl'
+test∆clear_log log
+
+⍝ check test version
+  1⎕CR	(version)
+'1.2.0'
+
+⍝ ∇leapYear
+
+⍝ year not divisible by 4: common year
+  leapYear 2015
+0
+
+⍝ year divisible by 4, not divisible by 100: leap year
+  leapYear 1996
+1
+
+⍝ year divisible by 100, not divisible by 400: common year
+  leapYear 2100
+0
+
+⍝ year divisible by 400: leap year
+  leapYear 2000
+1
+
+test∆show_log log
