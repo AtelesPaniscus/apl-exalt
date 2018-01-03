@@ -70,4 +70,12 @@ test∆clear_log log
   1⎕CR test∆try '''ATA'' distance ''AGTG'''
 1 'LENGTH ERROR'
 
+⍝ disallow single characters with strings
+  1⎕CR	(test∆try '''A'' distance ''AAA''')
+1 'LENGTH ERROR'
+
+⍝ and vice versa
+  1⎕CR	(test∆try '''AATG'' distance ''A''')
+1 'LENGTH ERROR'
+
 test∆show_log log

@@ -37,7 +37,7 @@ of equal length differently.
 
 ## Source
 
-The Calculating Point Mutations problem at Rosalind [http://rosalind.info/problems/hamm/](http://rosalind.info/problems/hamm/)
+The [Calculating Point Mutations](http://rosalind.info/problems/hamm/) problem at Rosalind.
 
 ## Submitting Incomplete Solutions
 
