@@ -1,0 +1,33 @@
+log←'./rna-transcription.tc.log'
+⍎ ')COPY ',(⎕FIO 30),'/../../test.apl'
+
+test∆copy_relative 'rna-transcription.apl'
+test∆clear_log log
+
+⍝ check test version
+  1⎕CR	(version)
+'1.1.0'
+
+⍝ ∇toRna
+
+⍝ RNA complement of cytosine is guanine
+  (toRna ,'C') ≡ ,'G'
+1
+
+⍝ RNA complement of guanine is cytosine
+  (toRna ,'G') ≡ ,'C'
+1
+
+⍝ RNA complement of thymine is adenine
+  (toRna ,'T') ≡ ,'A'
+1
+
+⍝ RNA complement of adenine is uracil
+  (toRna ,'A') ≡ ,'U'
+1
+
+⍝ RNA complement
+  (toRna 'ACGTGGTCTTAA') ≡ 'UGCACCAGAAUU'
+1
+
+test∆show_log log
