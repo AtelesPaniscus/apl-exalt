@@ -20,7 +20,7 @@ each nucleotide with its complement:
 
 ## Source
 
-Rosalind [http://rosalind.info/problems/rna](http://rosalind.info/problems/rna)
+[Rosalind](http://rosalind.info/problems/rna).
 
 ## Submitting Incomplete Solutions
 
