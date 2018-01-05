@@ -19,7 +19,7 @@ Convert a number to a string, the contents of which depend on the number's facto
 
 ## Source
 
-A variation on a famous interview question intended to weed out potential candidates. [http://jumpstartlab.com](http://jumpstartlab.com)
+A variation on a famous interview question intended to weed out potential candidates from [JumpstartLab](http://jumpstartlab.com).
 
 ## Submitting Incomplete Solutions
 
