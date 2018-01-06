@@ -14,7 +14,7 @@ natural numbers is 3025 - 385 = 2640.
 
 ## Source
 
-Problem 6 at Project Euler [http://projecteuler.net/problem=6](http://projecteuler.net/problem=6)
+[Problem 6](http://projecteuler.net/problem=6) at Project Euler.
 
 ## Submitting Incomplete Solutions
 
