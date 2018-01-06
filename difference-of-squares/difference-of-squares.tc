@@ -1,0 +1,53 @@
+log←'./difference-of-squares.tc.log'
+⍎ ')COPY ',(⎕FIO 30),'/../../test.apl'
+
+test∆copy_relative 'difference-of-squares.apl'
+test∆clear_log log
+
+⍝ check test version
+  1⎕CR	(version)
+'1.2.0'
+
+⍝ ∇squareOfSum
+
+⍝ square of sum 1
+  (squareOfSum 1) ≡ 1
+1
+
+⍝ square of sum 5
+  (squareOfSum 5) ≡ 225
+1
+
+⍝ square of sum 100
+  (squareOfSum 100) ≡ 25502500
+1
+
+⍝ ∇sumOfSquares
+
+⍝ sum of squares 1
+  (sumOfSquares 1) ≡ 1
+1
+
+⍝ sum of squares 5
+  (sumOfSquares 5) ≡ 55
+1
+
+⍝ sum of squares 100
+  (sumOfSquares 100) ≡ 338350
+1
+
+⍝ ∇differenceOfSquares
+
+⍝ difference of squares 1
+  (differenceOfSquares 1) ≡ 0
+1
+
+⍝ difference of squares 5
+  (differenceOfSquares 5) ≡ 170
+1
+
+⍝ difference of squares 100
+  (differenceOfSquares 100) ≡ 25164150
+1
+
+test∆show_log log
