@@ -10,7 +10,7 @@ insensitive. Input will not contain non-ASCII symbols.
 
 ## Source
 
-Wikipedia [https://en.wikipedia.org/wiki/Pangram](https://en.wikipedia.org/wiki/Pangram)
+See [Pangram](https://en.wikipedia.org/wiki/Pangram) at Wikipedia.
 
 ## Submitting Incomplete Solutions
 
