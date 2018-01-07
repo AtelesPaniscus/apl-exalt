@@ -1,0 +1,53 @@
+log←'./pangram.tc.log'
+⍎ ')COPY ',(⎕FIO 30),'/../../test.apl'
+
+test∆copy_relative 'pangram.apl'
+test∆clear_log log
+
+⍝ check test version
+  1⎕CR	(version)
+'1.3.0'
+
+⍝ ∇isPangram
+
+⍝ sentence empty
+  isPangram ''
+0
+
+⍝ recognizes a perfect lower case pangram
+  isPangram 'abcdefghijklmnopqrstuvwxyz'
+1
+
+⍝ pangram with only lower case
+  isPangram 'the quick brown fox jumps over the lazy dog'
+1
+
+⍝ missing character 'x'
+  isPangram 'a quick movement of the enemy will jeopardize five gunboats'
+0
+
+⍝ another missing character, e.g. 'h'
+  isPangram 'five boxing wizards jump quickly at it'
+0
+
+⍝ pangram with underscores
+  isPangram 'the_quick_brown_fox_jumps_over_the_lazy_dog'
+1
+
+⍝ pangram with numbers
+  isPangram 'the 1 quick brown fox jumps over the 2 lazy dogs'
+1
+
+⍝ missing letters replaced by numbers
+  isPangram '7h3 qu1ck brown fox jumps ov3r 7h3 lazy dog'
+0
+
+⍝ pangram with mixed case and punctuation
+  isPangram '"Five quacking Zephyrs jolt my wax bed."'
+1
+
+⍝ upper and lower case versions of the same character should not be counted separately
+  isPangram 'the quick brown fox jumps over with lazy FX'
+0
+
+test∆show_log log
