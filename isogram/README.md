@@ -15,7 +15,7 @@ The word *isograms*, however, is not an isogram, because the s repeats.
 
 ## Source
 
-Wikipedia [https://en.wikipedia.org/wiki/Isogram](https://en.wikipedia.org/wiki/Isogram)
+See [Isogram](https://en.wikipedia.org/wiki/Isogram) at Wikipedia.
 
 ## Submitting Incomplete Solutions
 
