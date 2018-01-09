@@ -28,7 +28,8 @@ Resulting in 9 steps. So for input n = 12, the return value would be 9.
 
 ## Source
 
-An unsolved problem in mathematics named after mathematician Lothar Collatz [https://en.wikipedia.org/wiki/3x_%2B_1_problem](https://en.wikipedia.org/wiki/3x_%2B_1_problem)
+An unsolved problem in mathematics named after mathematician Lothar Collatz.
+See [Collatz Conjecture](https://en.wikipedia.org/wiki/Collatz_conjecture) at Wikipedia.
 
 ## Submitting Incomplete Solutions
 
