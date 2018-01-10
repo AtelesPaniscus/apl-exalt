@@ -1,0 +1,62 @@
+log←'./rotational-cipher.tc.log'
+⍎ ')COPY ',(⎕FIO 30),'/../../test.apl'
+
+⍝ assert a match
+
+∇ R ← A assert∆match B
+    R ← A ≡ B
+    → R / exit
+    R ← 1⎕CR A
+exit:
+∇
+
+test∆copy_relative 'rotational-cipher.apl'
+test∆clear_log log
+
+⍝ check test version
+  1⎕CR	(version)
+'1.1.0'
+
+⍝ ∇rotate
+
+⍝ rotate a by 0, same output as input
+  (,'a' rotate 0) assert∆match ,'a'
+1
+
+⍝ rotate a by 1
+  (,'a' rotate 1) assert∆match ,'b'
+1
+
+⍝ rotate a by 26, same output as input
+  (,'a' rotate 26) assert∆match ,'a'
+1
+
+⍝ rotate m by 13
+  (,'m' rotate 13) assert∆match ,'z'
+1
+
+⍝ rotate n by 13 with wrap around alphabet
+  (,'n' rotate 13) assert∆match ,'a'
+1
+
+⍝ rotate capital letters
+  ('OMG' rotate 5) assert∆match 'TRL'
+1
+
+⍝ rotate spaces
+  ('O M G' rotate 5) assert∆match 'T R L'
+1
+
+⍝ rotate numbers
+  ('Testing 1 2 3 testing' rotate 4) assert∆match 'Xiwxmrk 1 2 3 xiwxmrk'
+1
+
+⍝ rotate punctuation
+  ('Let''s eat, Grandma!' rotate 21) assert∆match 'Gzo''n zvo, Bmviyhv!'
+1
+
+⍝ rotate all letters
+  ('The quick brown fox jumps over the lazy dog.' rotate 13) assert∆match 'Gur dhvpx oebja sbk whzcf bire gur ynml qbt.'
+1
+
+test∆show_log log
