@@ -32,7 +32,7 @@ Ciphertext is written out in the same formatting as the input including spaces a
 
 ## Source
 
-Wikipedia [https://en.wikipedia.org/wiki/Caesar_cipher](https://en.wikipedia.org/wiki/Caesar_cipher)
+[Caesar Cipher](https://en.wikipedia.org/wiki/Caesar_cipher) at Wikipedia.
 
 ## Submitting Incomplete Solutions
 
