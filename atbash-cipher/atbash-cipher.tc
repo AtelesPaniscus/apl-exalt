@@ -1,0 +1,72 @@
+log←'./atbash-cipher.tc.log'
+⍎ ')COPY ',(⎕FIO 30),'/../../test.apl'
+
+⍝ assert a match
+
+∇ R ← A assert∆match B
+    R ← A ≡ B
+    → R / exit
+    R ← 1⎕CR A
+exit:
+∇
+
+test∆copy_relative 'atbash-cipher.apl'
+test∆clear_log log
+
+⍝ check test version
+  1⎕CR	(version)
+'1.1.0'
+
+⍝ ∇encode
+
+⍝ encode yes
+  (encode 'yes') assert∆match 'bvh'
+1
+
+⍝ encode no
+  (encode 'no') assert∆match 'ml'
+1
+
+⍝ encode OMG
+  (encode 'OMG') assert∆match 'lnt'
+1
+
+⍝ encode spaces
+  (encode 'O M G') assert∆match 'lnt'
+1
+
+⍝ encode mindblowingly
+  (encode 'mindblowingly') assert∆match 'nrmwy oldrm tob'
+1
+
+⍝ encode numbers
+  (encode 'Testing,1 2 3, testing.') assert∆match 'gvhgr mt123 gvhgr mt'
+1
+
+⍝ encode deep thought
+  (encode 'Truth is fiction.') assert∆match 'gifgs rhurx grlm'
+1
+
+⍝ encode all the letters
+  (encode 'The quick brown fox jumps over the lazy dog.') assert∆match 'gsvjf rxpyi ldmul cqfnk hlevi gsvoz abwlt'
+1
+
+⍝ ∇decode
+
+⍝ decode exercism
+  (decode 'vcvix rhn') assert∆match 'exercism'
+1
+
+⍝ decode a sentence
+  (decode 'zmlyh gzxov rhlug vmzhg vkkrm thglm v') assert∆match 'anobstacleisoftenasteppingstone'
+1
+
+⍝ decode numbers
+  (decode 'gvhgr mt123 gvhgr mt') assert∆match 'testing123testing'
+1
+
+⍝ decode all the letters
+  (decode 'gsvjf rxpyi ldmul cqfnk hlevi gsvoz abwlt') assert∆match 'thequickbrownfoxjumpsoverthelazydog'
+1
+
+test∆show_log log
