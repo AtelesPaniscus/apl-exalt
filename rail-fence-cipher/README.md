@@ -60,7 +60,7 @@ If you now read along the zig-zag shape you can read the original message.
 
 ## Source
 
-Wikipedia [https://en.wikipedia.org/wiki/Transposition_cipher#Rail_Fence_cipher](https://en.wikipedia.org/wiki/Transposition_cipher#Rail_Fence_cipher)
+[Rail Fence Cipher](https://en.wikipedia.org/wiki/Transposition_cipher#Rail_Fence_cipher) at Wikipedia.
 
 ## Submitting Incomplete Solutions
 
