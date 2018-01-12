@@ -1,0 +1,48 @@
+log←'./rail-fence-cipher.tc.log'
+⍎ ')COPY ',(⎕FIO 30),'/../../test.apl'
+
+⍝ assert a match
+
+∇ R ← A assert∆match B
+    R ← A ≡ B
+    → R / exit
+    R ← 1⎕CR A
+exit:
+∇
+
+test∆copy_relative 'rail-fence-cipher.apl'
+test∆clear_log log
+
+⍝ check test version
+  1⎕CR	(version)
+'1.0.1'
+
+⍝ ∇encode
+
+⍝ encode with two rails
+  ('XOXOXOXOXOXOXOXOXO' encode 2) assert∆match 'XXXXXXXXXOOOOOOOOO'
+1
+
+⍝ encode with three rails
+  ('WEAREDISCOVEREDFLEEATONCE' encode 3) assert∆match 'WECRLTEERDSOEEFEAOCAIVDEN'
+1
+
+⍝ encode with ending in the middle
+  ('EXERCISES' encode 4) assert∆match 'ESXIEECSR'
+1
+
+⍝ ∇decode
+
+⍝ decode with three rails
+  ('TEITELHDVLSNHDTISEIIEA' decode 3) assert∆match 'THEDEVILISINTHEDETAILS'
+1
+
+⍝ decode with five rails
+  ('EIEXMSMESAORIWSCE' decode 5) assert∆match 'EXERCISMISAWESOME'
+1
+
+⍝ decode with six rails
+  ('133714114238148966225439541018335470986172518171757571896261' decode 6) assert∆match '112358132134558914423337761098715972584418167651094617711286'
+1
+
+test∆show_log log
