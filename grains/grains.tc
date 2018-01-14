@@ -1,0 +1,68 @@
+log←'./grains.tc.log'
+⍎ ')COPY ',(⎕FIO 30),'/../../test.apl'
+
+⍝ assert a match
+
+∇ R ← A assert∆match B
+    R ← A ≡ B
+    → R / exit
+    R ← 1⎕CR A
+exit:
+∇
+
+test∆copy_relative 'grains.apl'
+test∆clear_log log
+
+⍝ check test version
+  1⎕CR	(version)
+'1.0.0'
+
+⍝ ∇square
+
+⍝ 1
+  (square 1) assert∆match 1
+1
+
+⍝ 2
+  (square 2) assert∆match 2
+1
+
+⍝ 3
+  (square 3) assert∆match 4
+1
+
+⍝ 4
+  (square 4) assert∆match 8
+1
+
+⍝ 16
+  (square 16) assert∆match 32768
+1
+
+⍝ 32
+  (square 32) assert∆match 2147483648
+1
+
+⍝ 64
+  (square 64) assert∆match 9223372036854775808
+1
+
+⍝ square 0 raises an exception
+  1⎕CR test∆try 'square 0'
+1 'DOMAIN ERROR'
+
+⍝ negative square raises an exception
+  1⎕CR test∆try 'square -1'
+1 'DOMAIN ERROR'
+
+⍝ square greater than 64 raises an exception
+  1⎕CR test∆try 'square 65'
+1 'DOMAIN ERROR'
+
+⍝ ∇total
+
+⍝ returns the total number of grains on the board
+  (total) assert∆match 18446744073709551615
+1
+
+test∆show_log log
