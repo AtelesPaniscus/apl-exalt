@@ -11,7 +11,7 @@ Exercises in APL in the [Exercism](http://exercism.io/) style.
 The Exercism project provides generic (or canonical) exercise specifications from which programming language specific exercises are derived.
 These specifications are suitable for automatic generation of test cases.
 
-AtelesPaniscus has written such an exercise generator program (EGP) and reference solutions for many exercises.
+AtelesPaniscus has written such an exercise generator program (EGP) and also reference solutions for many exercises.
 
 ### How
 
@@ -48,7 +48,7 @@ for dropping compatibility with the Exercism GNU APL track at some point in the 
 
 ### Where
 
-On [GitHub](https://github.com/AtelesPaniscus/apl-exorcism).
+On [GitHub](https://github.com/AtelesPaniscus/apl-exalt).
 
 ### When
 
@@ -118,36 +118,51 @@ If the special case appears to be a regression then the EGP will be corrected.
 
 ### Running the Tests Cases for Yourself
 
-Ah ... in short, you are on your own.
+For this you need the Exercism GNU APL test harness.
+This is SEP: do not direct any criticism of it towards me.
 
-For now, this repository is just that.  Someday I will need to describe how to set up to run the first exercise.
-At the moment that means getting a copy of the Exercism GNU APL test harness.  Enjoy.
+The simplest way to set yourself up to run the test cases is to first clone the Exercism APL and then clone this repository so that relative paths all line up.
 
-The test harness is SEP: do not direct any criticism of it towards me.
-
-To run the test cases for an exercise, I `cd` into the slug-named directory for the exercise and enter:
+Thus:
 
 ```bash
+    mkdir mayday
+    cd mayday
+
+    git clone git@github.com:exercism/gnu-apl.git
+    cd gnu-apl
+
+    git clone git@github.com:AtelesPaniscus/apl-exalt.git
+    cd apl-exalt
+```
+
+ought to do the trick.
+
+
+To run the test cases for the exercise `slug-name`:
+
+```bash
+    cd slug-name
     apl --emacs -s -T *.tc
 ```
 
-When I am very lucky I get the report:
+When you are very lucky you will get the report:
 
 ```code
     0 errors in 1(1) testcase files
 ```
 
-When I am not, I get anything between a report that more tests have failed than there are cases to fail
+Otherwise you may get get anything from report that more tests have failed than there are cases to fail
 to an infinite loop as the GNU APL interpreter juggles exceptions deep within its bowels.
 
 I find this last behaviour obliges me to kill the APL interpreter from another command line.
 
-I think this is retribution on the part of GNL APL for breaking the Exercism commandment
-"Thou shall not use lambda functions".
 There are several cases in GNU APL of the interpreter behaving in a sane manner when used interactively
 but not so when using the GNU APL test harness.  This is one of them.
+I think this is retribution on the part of GNL APL for breaking the Exercism commandment
+"Thou shall not use lambda functions".
 
-There is little Exercism or I can do about these but they may eventually push me to abandon them
+There is little Exercism or I can do about these but they may eventually push me to abandon the
 GNU APL test harness and so compatibility with the Exercism track.
 
 
@@ -173,9 +188,9 @@ These are simple exercises that provide good examples of the `canonical-data.jso
 It was felt necessary to introduce flags for the EGP to control the output and/or provide information missing from `canonical-data.json` or
 override the information present.
 
-First, some exercises have bad test cases.
+First, some exercises have 'bad' test cases.
 What error should the EGP expect ?
-In the seven exercises, 'hamming' is expected to generate LENGTH ERROR and in 'rna-transcription' DOMAIN ERROR.
+In the seven exercises, 'hamming' solutions are expected to generate LENGTH ERROR and 'rna-transcription' solutions DOMAIN ERROR.
 The '`-e`' flag was added to tell the EGP which error to expect (and provide the means).
 
 Second, the '`-n`' (for parameter name) was added.
@@ -187,3 +202,59 @@ The EGP needs to enclose strings and characters in apostrophes and to use 0 and 
 It may be possible for the EGP to deduce the types correctly most of the time
 so this flag was first introduced to handle cases where the deduction was incorrect or inappropriate.
 However, always specifying the types explicitly is more consistent so the flag quickly became expected.
+
+## Week 2
+
+The exercises undertaken during week 2 were:
+
+  * isogram
+  * collatz-conjecture
+  * rotational-cipher
+  * atbash-cipher
+  * rail-fence-cipher
+  * sieve
+  * grains
+
+It was expected with these exercises that a couple of small adjustments might be made to the EGP.
+The hind sight impression is that each required a change.
+The most challenging of which arose from 'sieve' and 'grains'.
+
+Exercism requires some sort of test framework.
+Many programming languages now have an xUnit testing framework along the lines of Junit, pyUnit and so forth.
+Other Exercism language tracks take advantage of this but Exercism does not require anything so sophisticated.
+
+So far as I know, APL has no xUnit framework.
+GNU APL does have a test case framework and the Exercism track uses this.
+
+The GNU APL framework, for those familiar with Python, is more like pyDoc than pyUnit.
+It is, I think, meant for regression testing of GNU APL itself.
+This has advantages and disadvantages.
+None of the latter, on their own, is enough to warrant building something else.
+
+The framework checks the actual output against the expected output letter-by-letter, line-by-line.
+If the function under test outputs so much as an extra blank line in one test case, the test case fail and so do all the subsequent test cases.
+
+The last test case of 'sieve' produces a list of primes up to 1000.
+This is too long to fit on one line so, to pass, the EGP should mimic GNU APL's line-wrapping.
+Hand corrections are tedious.
+Neither solution is 'portable'.
+
+The last two test cases of 'grains' fail because GNU APL chooses to print numbers (including integers) larger than 2^53 in real number notation.
+I could find no mechanism in GNU APL to alter this behaviour.
+
+The match (`≡`) primitive of APL allows these problems to be side-stepped.  It also allows comparison of the rank (and other otherwise
+invisible differences) of the actual test result and the reference.
+There is a drawback:  the actual test output is not printed, which hampers debugging.
+
+With xUnit test frameworks, a routine or macro is used to compare actual with expected test results.
+The advantage is that the routine or macro can do all sorts of extra stuff if it needs to.
+Thus the function `assert∆match` was introduced.
+It does the match and if that fails, prints out the actual test result.
+
+The EGP was changed to use `≡` by default except for functions with a Boolean result.
+The flag `-c` may be used to override this.
+Currently, `-c=a` tells the EGP to use `assert∆match`.
+Current policy is to used `-c=a` for all exercises except for those with function(s) with a Boolean result.
+
+This is a stop gap measure that sits uncomfortably with the existing test harness.
+As yet not enough exercises have been done to enable a more permanent, informed, choice to be made.
