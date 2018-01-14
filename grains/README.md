@@ -28,7 +28,7 @@ experiment make the code better? Worse? Did you learn anything from it?
 
 ## Source
 
-JavaRanch Cattle Drive, exercise 6 [http://www.javaranch.com/grains.jsp](http://www.javaranch.com/grains.jsp)
+[JavaRanch Cattle Drive, exercise 6](http://www.javaranch.com/grains.jsp).
 
 ## Submitting Incomplete Solutions
 
