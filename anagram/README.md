@@ -8,7 +8,7 @@ Given `"listen"` and a list of candidates like `"enlists" "google"
 
 ## Source
 
-Inspired by the Extreme Startup game [https://github.com/rchatley/extreme_startup](https://github.com/rchatley/extreme_startup)
+Inspired by the [Extreme Startup](https://github.com/rchatley/extreme_startup) game.
 
 ## Submitting Incomplete Solutions
 
