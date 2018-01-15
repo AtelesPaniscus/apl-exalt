@@ -1,0 +1,86 @@
+log←'./anagram.tc.log'
+⍎ ')COPY ',(⎕FIO 30),'/../../test.apl'
+
+⍝ assert a match
+
+∇ R ← A assert∆match B
+    R ← A ≡ B
+    → R / exit
+    R ← 1⎕CR A
+exit:
+∇
+
+test∆copy_relative 'anagram.apl'
+test∆clear_log log
+
+⍝ check test version
+  1⎕CR	(version)
+'1.1.0'
+
+⍝ ∇anagrams
+
+⍝ no matches
+  ('diaper' anagrams 'hello' 'world' 'zombies' 'pants') assert∆match ''
+1
+
+⍝ detects simple anagram
+  ('ant' anagrams 'tan' 'stand' 'at') assert∆match ,⊂'tan'
+1
+
+⍝ does not detect false positives
+  ('galea' anagrams ,⊂'eagle') assert∆match ''
+1
+
+⍝ detects two anagrams
+  ('master' anagrams 'stream' 'pigeon' 'maters') assert∆match 'stream' 'maters'
+1
+
+⍝ does not detect anagram subsets
+  ('good' anagrams 'dog' 'goody') assert∆match ''
+1
+
+⍝ detects anagram
+  ('listen' anagrams 'enlists' 'google' 'inlets' 'banana') assert∆match ,⊂'inlets'
+1
+
+⍝ detects three anagrams
+  ('allergy' anagrams 'gallery' 'ballerina' 'regally' 'clergy' 'largely' 'leading') assert∆match 'gallery' 'regally' 'largely'
+1
+
+⍝ does not detect identical words
+  ('corn' anagrams 'corn' 'dark' 'Corn' 'rank' 'CORN' 'cron' 'park') assert∆match ,⊂'cron'
+1
+
+⍝ does not detect non-anagrams with identical checksum
+  ('mass' anagrams ,⊂'last') assert∆match ''
+1
+
+⍝ detects anagrams case-insensitively
+  ('Orchestra' anagrams 'cashregister' 'Carthorse' 'radishes') assert∆match ,⊂'Carthorse'
+1
+
+⍝ detects anagrams using case-insensitive subject
+  ('Orchestra' anagrams 'cashregister' 'carthorse' 'radishes') assert∆match ,⊂'carthorse'
+1
+
+⍝ detects anagrams using case-insensitive possible matches
+  ('orchestra' anagrams 'cashregister' 'Carthorse' 'radishes') assert∆match ,⊂'Carthorse'
+1
+
+⍝ does not detect a word as its own anagram
+  ('banana' anagrams ,⊂'Banana') assert∆match ''
+1
+
+⍝ does not detect a anagram if the original word is repeated
+  ('go' anagrams ,⊂'go Go GO') assert∆match ''
+1
+
+⍝ anagrams must use all letters exactly once
+  ('tapper' anagrams ,⊂'patter') assert∆match ''
+1
+
+⍝ capital word is not own anagram
+  ('BANANA' anagrams ,⊂'Banana') assert∆match ''
+1
+
+test∆show_log log
