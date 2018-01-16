@@ -24,7 +24,7 @@ a single line. Feel free to add your own code/tests to check for degenerate tria
 
 ## Source
 
-The Ruby Koans triangle project, parts 1 & 2 [http://rubykoans.com](http://rubykoans.com)
+The [Ruby Koans](http://rubykoans.com) triangle project, parts 1 & 2.
 
 ## Submitting Incomplete Solutions
 
