@@ -1,0 +1,85 @@
+log←'./triangle.tc.log'
+⍎ ')COPY ',(⎕FIO 30),'/../../test.apl'
+
+test∆copy_relative 'triangle.apl'
+test∆clear_log log
+
+⍝ check test version
+  1⎕CR	(version)
+'1.0.0'
+
+⍝ ∇equilateral
+
+⍝ true if all sides are equal
+  equilateral 2 2 2
+1
+
+⍝ false if any side is unequal
+  equilateral 2 3 2
+0
+
+⍝ false if no sides are equal
+  equilateral 5 4 6
+0
+
+⍝ All zero sides are illegal, so the triangle is not equilateral
+  equilateral 0 0 0
+0
+
+⍝ sides may be floats
+  equilateral 0.5 0.5 0.5
+1
+
+⍝ ∇isosceles
+
+⍝ true if last two sides are equal
+  isosceles 3 4 4
+1
+
+⍝ true if first two sides are equal
+  isosceles 4 4 3
+1
+
+⍝ true if first and last sides are equal
+  isosceles 4 3 4
+1
+
+⍝ equilateral triangles are also isosceles
+  isosceles 4 4 4
+1
+
+⍝ false if no sides are equal
+  isosceles 2 3 4
+0
+
+⍝ Sides that violate triangle inequality are not isosceles, even if two are equal
+  isosceles 1 1 3
+0
+
+⍝ sides may be floats
+  isosceles 0.5 0.4 0.5
+1
+
+⍝ ∇scalene
+
+⍝ true if no sides are equal
+  scalene 5 4 6
+1
+
+⍝ false if all sides are equal
+  scalene 4 4 4
+0
+
+⍝ false if two sides are equal
+  scalene 4 4 3
+0
+
+⍝ Sides that violate triangle inequality are not scalene, even if they are all different
+  scalene 7 3 2
+0
+
+⍝ sides may be floats
+  scalene 0.5 0.4 0.6
+1
+
+test∆show_log log
