@@ -44,7 +44,7 @@ See also: http://www.novaroma.org/via_romana/numbers.html
 
 ## Source
 
-The Roman Numeral Kata [http://codingdojo.org/cgi-bin/index.pl?KataRomanNumerals](http://codingdojo.org/cgi-bin/index.pl?KataRomanNumerals)
+The [Roman Numeral Kata](http://codingdojo.org/cgi-bin/index.pl?KataRomanNumerals) at Coding Dojo.
 
 ## Submitting Incomplete Solutions
 
