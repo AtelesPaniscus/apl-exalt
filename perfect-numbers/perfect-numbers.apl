@@ -4,18 +4,10 @@ version ← '1.0.1' ⍝ perfect-numbers exercise, GNU-APL track, exercism
 
 domain∆error ← {⍵ ÷ 0} ⍝ may come in handy
 
-∇result ← classify integer
-    result ← 'Implement me and return an integer'
-∇
+deficient   ← ¯1
+perfect     ←  0
+abundant    ←  1
 
 ∇result ← classify integer
-    result ← 'Implement me and return an integer'
-∇
-
-∇result ← classify integer
-    result ← 'Implement me and return an integer'
-∇
-
-∇result ← classify integer
-    result ← 'Implement me and return an integer'
+    result ← 'Implement me and return deficient, perfect or abundant'
 ∇
