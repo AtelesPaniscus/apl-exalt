@@ -1,0 +1,80 @@
+log←'./perfect-numbers.tc.log'
+⍎ ')COPY ',(⎕FIO 30),'/../../test.apl'
+
+⍝ assert a match
+
+∇ R ← A assert∆match B
+    R ← A ≡ B
+    → R / exit
+    R ← 1⎕CR A
+exit:
+∇
+
+test∆copy_relative 'perfect-numbers.apl'
+test∆clear_log log
+
+⍝ check test version
+  1⎕CR	(version)
+'1.0.1'
+
+⍝ ∇classify
+
+⍝ Smallest perfect number is classified correctly
+  (classify 6) assert∆match perfect
+1
+
+⍝ Medium perfect number is classified correctly
+  (classify 28) assert∆match perfect
+1
+
+⍝ Large perfect number is classified correctly
+  (classify 33550336) assert∆match perfect
+1
+
+⍝ ∇classify
+
+⍝ Smallest abundant number is classified correctly
+  (classify 12) assert∆match abundant
+1
+
+⍝ Medium abundant number is classified correctly
+  (classify 30) assert∆match abundant
+1
+
+⍝ Large abundant number is classified correctly
+  (classify 33550335) assert∆match abundant
+1
+
+⍝ ∇classify
+
+⍝ Smallest prime deficient number is classified correctly
+  (classify 2) assert∆match deficient
+1
+
+⍝ Smallest non-prime deficient number is classified correctly
+  (classify 4) assert∆match deficient
+1
+
+⍝ Medium deficient number is classified correctly
+  (classify 32) assert∆match deficient
+1
+
+⍝ Large deficient number is classified correctly
+  (classify 33550337) assert∆match deficient
+1
+
+⍝ Edge case (no factors other than itself) is classified correctly
+  (classify 1) assert∆match deficient
+1
+
+⍝ ∇classify
+
+⍝ Zero is rejected (not a natural number)
+  1⎕CR test∆try 'classify 0'
+1 'DOMAIN ERROR'
+
+⍝ Negative integer is rejected (not a natural number)
+  1⎕CR test∆try 'classify -1'
+1 'DOMAIN ERROR'
+
+test∆show_log log
