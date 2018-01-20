@@ -54,7 +54,7 @@ E·······E
 
 ## Source
 
-Seb Rose [http://claysnow.co.uk/recycling-tests-in-tdd/](http://claysnow.co.uk/recycling-tests-in-tdd/)
+[Seb Rose](http://claysnow.co.uk/recycling-tests-in-tdd/).
 
 ## Submitting Incomplete Solutions
 
