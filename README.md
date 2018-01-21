@@ -152,7 +152,7 @@ When you are very lucky you will get the report:
     0 errors in 1(1) testcase files
 ```
 
-Otherwise you may get get anything from report that more tests have failed than there are cases to fail
+Otherwise you may get anything from a report that more tests have failed than there are cases to fail
 to an infinite loop as the GNU APL interpreter juggles exceptions deep within its bowels.
 
 I find this last behaviour obliges me to kill the APL interpreter from another command line.
@@ -232,7 +232,7 @@ This has advantages and disadvantages.
 None of the latter, on their own, is enough to warrant building something else.
 
 The framework checks the actual output against the expected output letter-by-letter, line-by-line.
-If the function under test outputs so much as an extra blank line in one test case, the test case fail and so do all the subsequent test cases.
+If the function under test outputs so much as an extra blank line in one test case, the test case fails and so do all the subsequent test cases.
 
 The last test case of 'sieve' produces a list of primes up to 1000.
 This is too long to fit on one line so, to pass, the EGP should mimic GNU APL's line-wrapping.
@@ -243,18 +243,57 @@ The last two test cases of 'grains' fail because GNU APL chooses to print number
 I could find no mechanism in GNU APL to alter this behaviour.
 
 The match (`≡`) primitive of APL allows these problems to be side-stepped.  It also allows comparison of the rank (and other otherwise
-invisible differences) of the actual test result and the reference.
+invisible differences) of the actual and expected test results.
 There is a drawback:  the actual test output is not printed, which hampers debugging.
 
 With xUnit test frameworks, a routine or macro is used to compare actual with expected test results.
-The advantage is that the routine or macro can do all sorts of extra stuff if it needs to.
+The advantage is that the routine or macro can do all sorts of extra stuff if need be.
 Thus the function `assert∆match` was introduced.
 It does the match and if that fails, prints out the actual test result.
 
 The EGP was changed to use `≡` by default except for functions with a Boolean result.
-The flag `-c` may be used to override this.
+The flag `-c` (for compare) may be used to override this.
 Currently, `-c=a` tells the EGP to use `assert∆match`.
 Current policy is to used `-c=a` for all exercises except for those with function(s) with a Boolean result.
 
 This is a stop gap measure that sits uncomfortably with the existing test harness.
 As yet not enough exercises have been done to enable a more permanent, informed, choice to be made.
+
+## Week 3
+
+The exercises undertaken during week 3 were:
+
+  * anagram
+  * triangle
+  * roman-numerals
+  * perfect-numbers
+  * nth-prime
+  * diamond
+  * bob
+
+This a varied lot of exercises several of which challenged the EGP as was.
+
+The 'anagram' exercise was the first to return a vector (of strings as it happens).
+The EGP is able to detect this from the presence of lists in the `canonical-data.json` file.
+
+This exercise brought another issue to the forefront.
+In APL, `1` is an scalar, `,1` is an vector but, when printed, both are represented by `1`.
+This sometimes is convenient and other times inconvenient.
+
+The GNU APL test case harness compares letter-for-letter so a function may return either a scalar or a vector length 1 for this special case/
+However, if another function wants to use the result of the first this really can be a bind.
+
+Policy is now that:
+
+  * a string of length one is represented by `,'x'` and the scalar `'x'` cannot be substituted;
+  * an array of strings of length one is represented by `,⊂'hello'` and the scalar string `'hello'` cannot be substituted.
+
+When a similar issue arises for numbers, the situation will be reviewed but it is likely the same policy will be applied.
+
+Hand modification of `perfect-numbers.apl` was required:  the definition of an 'enumeration' `{deficient, perfect, abundant}` is beyond the scope of the EGP.
+
+Hand modification of `bob.rc` was required:  the multi-line test cases were removed.
+I do not think APL can handle multi-line input.
+
+The 'diamond' exercise is unusual in that it 'draws' a shape.
+Its test cases are better using the letter-by-letter comparison, which is now directed by the `-c=r` flag.
