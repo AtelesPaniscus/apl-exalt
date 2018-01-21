@@ -95,27 +95,12 @@ test∆clear_log log
   (response '          ') assert∆match 'Fine. Be that way!'
 1
 
-⍝ alternate silence
-  (response '										') assert∆match 'Fine. Be that way!'
-1
-
-⍝ multiple line question
-  (response '
-Does this cryogenic chamber make me look fat?
-no') assert∆match 'Whatever.'
-1
-
 ⍝ starting with whitespace
   (response '         hmmmmmmm...') assert∆match 'Whatever.'
 1
 
 ⍝ ending with whitespace
   (response 'Okay if like my  spacebar  quite a bit?   ') assert∆match 'Sure.'
-1
-
-⍝ other whitespace
-  (response '
- 	') assert∆match 'Fine. Be that way!'
 1
 
 ⍝ non-question ending with whitespace

@@ -15,7 +15,7 @@ He answers 'Whatever.' to anything else.
 
 ## Source
 
-Inspired by the 'Deaf Grandma' exercise in Chris Pine's Learn to Program tutorial. [http://pine.fm/LearnToProgram/?Chapter=06](http://pine.fm/LearnToProgram/?Chapter=06)
+Inspired by the 'Deaf Grandma' exercise in Chris Pine's Learn to Program tutorial [Chapter 6](http://pine.fm/LearnToProgram/?Chapter=06).
 
 ## Submitting Incomplete Solutions
 
