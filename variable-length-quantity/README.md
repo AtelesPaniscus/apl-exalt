@@ -33,7 +33,7 @@ Here are examples of integers as 32-bit values, and the variable length quantiti
 
 ## Source
 
-A poor Splice developer having to implement MIDI encoding/decoding. [https://splice.com](https://splice.com)
+A poor Splice developer having to implement MIDI encoding/decoding at [https://splice.com](https://splice.com).
 
 ## Submitting Incomplete Solutions
 
