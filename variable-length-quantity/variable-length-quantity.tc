@@ -1,0 +1,128 @@
+log←'./variable-length-quantity.tc.log'
+⍎ ')COPY ',(⎕FIO 30),'/../../test.apl'
+
+⍝ assert a match
+
+∇ R ← A assert∆match B
+    R ← A ≡ B
+    → R / exit
+    R ← 1⎕CR A
+exit:
+∇
+
+test∆copy_relative 'variable-length-quantity.apl'
+test∆clear_log log
+
+⍝ check test version
+  1⎕CR	(version)
+'1.0.0'
+
+⍝ ∇encode
+
+⍝ zero
+  (encode ,⊂'00') assert∆match ,⊂'00'
+1
+
+⍝ arbitrary single byte
+  (encode ,⊂'40') assert∆match ,⊂'40'
+1
+
+⍝ largest single byte
+  (encode ,⊂'7f') assert∆match ,⊂'7f'
+1
+
+⍝ smallest double byte
+  (encode ,⊂'80') assert∆match '81' '00'
+1
+
+⍝ arbitrary double byte
+  (encode ,⊂'2000') assert∆match 'c0' '00'
+1
+
+⍝ largest double byte
+  (encode ,⊂'3fff') assert∆match 'ff' '7f'
+1
+
+⍝ smallest triple byte
+  (encode ,⊂'4000') assert∆match '81' '80' '00'
+1
+
+⍝ arbitrary triple byte
+  (encode ,⊂'100000') assert∆match 'c0' '80' '00'
+1
+
+⍝ largest triple byte
+  (encode ,⊂'1fffff') assert∆match 'ff' 'ff' '7f'
+1
+
+⍝ smallest quadruple byte
+  (encode ,⊂'200000') assert∆match '81' '80' '80' '00'
+1
+
+⍝ arbitrary quadruple byte
+  (encode ,⊂'8000000') assert∆match 'c0' '80' '80' '00'
+1
+
+⍝ largest quadruple byte
+  (encode ,⊂'fffffff') assert∆match 'ff' 'ff' 'ff' '7f'
+1
+
+⍝ smallest quintuple byte
+  (encode ,⊂'10000000') assert∆match '81' '80' '80' '80' '00'
+1
+
+⍝ arbitrary quintuple byte
+  (encode ,⊂'ff000000') assert∆match '8f' 'f8' '80' '80' '00'
+1
+
+⍝ maximum 32-bit integer input
+  (encode ,⊂'ffffffff') assert∆match '8f' 'ff' 'ff' 'ff' '7f'
+1
+
+⍝ two single-byte values
+  (encode '40' '7f') assert∆match '40' '7f'
+1
+
+⍝ two multi-byte values
+  (encode '4000' '123456') assert∆match '81' '80' '00' 'c8' 'e8' '56'
+1
+
+⍝ many multi-byte values
+  (encode '2000' '123456' '0fffffff' '00' '3fff' '4000') assert∆match 'c0' '00' 'c8' 'e8' '56' 'ff' 'ff' 'ff' '7f' '00' 'ff' '7f' '81' '80' '00'
+1
+
+⍝ ∇decode
+
+⍝ one byte
+  (decode ,⊂'7f') assert∆match ,⊂'7f'
+1
+
+⍝ two bytes
+  (decode 'c0' '00') assert∆match ,⊂'2000'
+1
+
+⍝ three bytes
+  (decode 'ff' 'ff' '7f') assert∆match ,⊂'1fffff'
+1
+
+⍝ four bytes
+  (decode '81' '80' '80' '00') assert∆match ,⊂'200000'
+1
+
+⍝ maximum 32-bit integer
+  (decode '8f' 'ff' 'ff' 'ff' '7f') assert∆match ,⊂'ffffffff'
+1
+
+⍝ incomplete sequence causes error
+  1⎕CR test∆try 'decode ,⊂''ff'''
+1 'DOMAIN ERROR'
+
+⍝ incomplete sequence causes error, even if value is zero
+  1⎕CR test∆try 'decode ,⊂''80'''
+1 'DOMAIN ERROR'
+
+⍝ multiple values
+  (decode 'c0' '00' 'c8' 'e8' '56' 'ff' 'ff' 'ff' '7f' '00' 'ff' '7f' '81' '80' '00') assert∆match '2000' '123456' '0fffffff' '00' '3fff' '4000'
+1
+
+test∆show_log log
