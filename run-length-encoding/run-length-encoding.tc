@@ -1,0 +1,78 @@
+log←'./run-length-encoding.tc.log'
+⍎ ')COPY ',(⎕FIO 30),'/../../test.apl'
+
+⍝ assert a match
+
+∇ R ← A assert∆match B
+    R ← A ≡ B
+    → R / exit
+    R ← 1⎕CR A
+exit:
+∇
+
+test∆copy_relative 'run-length-encoding.apl'
+test∆clear_log log
+
+⍝ check test version
+  1⎕CR	(version)
+'1.0.0'
+
+⍝ ∇encode
+
+⍝ empty string
+  (encode '') assert∆match ''
+1
+
+⍝ single characters only are encoded without count
+  (encode 'XYZ') assert∆match 'XYZ'
+1
+
+⍝ string with no single characters
+  (encode 'AABBBCCCC') assert∆match '2A3B4C'
+1
+
+⍝ single characters mixed with repeated characters
+  (encode 'WWWWWWWWWWWWBWWWWWWWWWWWWBBBWWWWWWWWWWWWWWWWWWWWWWWWB') assert∆match '12WB12W3B24WB'
+1
+
+⍝ multiple whitespace mixed in string
+  (encode '  hsqq qww  ') assert∆match '2 hs2q q2w2 '
+1
+
+⍝ lowercase characters
+  (encode 'aabbbcccc') assert∆match '2a3b4c'
+1
+
+⍝ ∇decode
+
+⍝ empty string
+  (decode '') assert∆match ''
+1
+
+⍝ single characters only
+  (decode 'XYZ') assert∆match 'XYZ'
+1
+
+⍝ string with no single characters
+  (decode '2A3B4C') assert∆match 'AABBBCCCC'
+1
+
+⍝ single characters with repeated characters
+  (decode '12WB12W3B24WB') assert∆match 'WWWWWWWWWWWWBWWWWWWWWWWWWBBBWWWWWWWWWWWWWWWWWWWWWWWWB'
+1
+
+⍝ multiple whitespace mixed in string
+  (decode '2 hs2q q2w2 ') assert∆match '  hsqq qww  '
+1
+
+⍝ lower case string
+  (decode '2a3b4c') assert∆match 'aabbbcccc'
+1
+
+⍝ ∇consistency
+
+⍝ encode followed by decode gives original string
+  (consistency 'zzz ZZ  zZ') assert∆match 'zzz ZZ  zZ'
+1
+
+test∆show_log log
