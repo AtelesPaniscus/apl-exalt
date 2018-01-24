@@ -25,7 +25,7 @@ be decoded always represent the count for the following character.
 
 ## Source
 
-Wikipedia [https://en.wikipedia.org/wiki/Run-length_encoding](https://en.wikipedia.org/wiki/Run-length_encoding)
+[Run-length Encoding](https://en.wikipedia.org/wiki/Run-length_encoding) at Wikipedia.
 
 ## Submitting Incomplete Solutions
 
