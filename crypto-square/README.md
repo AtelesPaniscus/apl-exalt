@@ -52,7 +52,7 @@ Those spaces should be distributed evenly, added to the end of the last
 `n` chunks.
 
 ```text
-imtgdvs fearwer mayoogo anouuio ntnnlvt wttddes aohghn  sseoau 
+imtgdvs fearwer mayoogo anouuio ntnnlvt wttddes aohghn  sseoau
 ```
 
 Notice that were we to stack these, we could visually decode the
@@ -71,7 +71,7 @@ sseoau
 
 ## Source
 
-J Dalbey's Programming Practice problems [http://users.csc.calpoly.edu/~jdalbey/103/Projects/ProgrammingPractice.html](http://users.csc.calpoly.edu/~jdalbey/103/Projects/ProgrammingPractice.html)
+J Dalbey's [Programming Practice Problems](http://users.csc.calpoly.edu/~jdalbey/103/Projects/ProgrammingPractice.html).
 
 ## Submitting Incomplete Solutions
 
