@@ -1,0 +1,50 @@
+log←'./crypto-square.tc.log'
+⍎ ')COPY ',(⎕FIO 30),'/../../test.apl'
+
+⍝ assert a match
+
+∇ R ← A assert∆match B
+    R ← A ≡ B
+    → R / exit
+    R ← 1⎕CR A
+exit:
+∇
+
+test∆copy_relative 'crypto-square.apl'
+test∆clear_log log
+
+⍝ check test version
+  1⎕CR	(version)
+'3.2.0'
+
+⍝ ∇ciphertext
+
+⍝ empty plaintext results in an empty ciphertext
+  (ciphertext '') assert∆match ''
+1
+
+⍝ Lowercase
+  (ciphertext ,'A') assert∆match ,'a'
+1
+
+⍝ Remove spaces
+  (ciphertext '  b ') assert∆match ,'b'
+1
+
+⍝ Remove punctuation
+  (ciphertext '@1,%!') assert∆match ,'1'
+1
+
+⍝ 9 character plaintext results in 3 chunks of 3 characters
+  (ciphertext 'This is fun!') assert∆match 'tsf hiu isn'
+1
+
+⍝ 8 character plaintext results in 3 chunks, the last one with a trailing space
+  (ciphertext 'Chill out.') assert∆match 'clu hlt io '
+1
+
+⍝ 54 character plaintext results in 7 chunks, the last two with trailing spaces
+  (ciphertext 'If man was meant to stay on the ground, god would have given us roots.') assert∆match 'imtgdvs fearwer mayoogo anouuio ntnnlvt wttddes aohghn  sseoau '
+1
+
+test∆show_log log
