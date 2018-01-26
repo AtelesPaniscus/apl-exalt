@@ -13,7 +13,7 @@ Write some code to determine whether a number is an Armstrong number.
 
 ## Source
 
-Wikipedia [https://en.wikipedia.org/wiki/Narcissistic_number](https://en.wikipedia.org/wiki/Narcissistic_number)
+[Narcissistic number](https://en.wikipedia.org/wiki/Narcissistic_number) at Wikipedia.
 
 ## Submitting Incomplete Solutions
 
