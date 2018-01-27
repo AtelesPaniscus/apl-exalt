@@ -1,0 +1,34 @@
+log←'./two-fer.tc.log'
+⍎ ')COPY ',(⎕FIO 30),'/../../test.apl'
+
+⍝ assert a match
+
+∇ R ← A assert∆match B
+    R ← A ≡ B
+    → R / exit
+    R ← 1⎕CR A
+exit:
+∇
+
+test∆copy_relative 'two-fer.apl'
+test∆clear_log log
+
+⍝ check test version
+  1⎕CR	(version)
+'1.1.0'
+
+⍝ ∇two_fer
+
+⍝ no name given
+  (two_fer) assert∆match 'One for you, one for me.'
+1
+
+⍝ a name given
+  (two_fer 'Alice') assert∆match 'One for Alice, one for me.'
+1
+
+⍝ another name given
+  (two_fer 'Bob') assert∆match 'One for Bob, one for me.'
+1
+
+test∆show_log log
