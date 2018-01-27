@@ -14,7 +14,8 @@ If no name is given, the result should be "One for you, one for me."
 
 ## Source
 
-This is an exercise to introduce users to basic programming constructs, just after Hello World. [https://en.wikipedia.org/wiki/Two-fer](https://en.wikipedia.org/wiki/Two-fer)
+This is an exercise to introduce users to basic programming constructs, just after Hello World.
+See [Two-fer](https://en.wikipedia.org/wiki/Two-fer) at Wikipedia.
 
 ## Submitting Incomplete Solutions
 

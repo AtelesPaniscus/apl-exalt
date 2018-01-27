@@ -20,7 +20,7 @@ test∆clear_log log
 ⍝ ∇two_fer
 
 ⍝ no name given
-  (two_fer) assert∆match 'One for you, one for me.'
+  (two_fer '') assert∆match 'One for you, one for me.'
 1
 
 ⍝ a name given
