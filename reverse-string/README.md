@@ -8,7 +8,7 @@ output: "looc"
 
 ## Source
 
-Introductory challenge to reverse an input string [https://medium.freecodecamp.org/how-to-reverse-a-string-in-javascript-in-3-different-ways-75e4763c68cb](https://medium.freecodecamp.org/how-to-reverse-a-string-in-javascript-in-3-different-ways-75e4763c68cb)
+freecodecamp.org introductory challenge to reverse an input string: [3 Different Ways To Reverse a String in Javascript](https://medium.freecodecamp.org/how-to-reverse-a-string-in-javascript-in-3-different-ways-75e4763c68cb)
 
 ## Submitting Incomplete Solutions
 
