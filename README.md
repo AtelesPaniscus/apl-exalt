@@ -82,7 +82,7 @@ This provides students with a place to start - essentially an empty solution.
 
 The rational behind this is that otherwise the first thing the student must do is look at the test cases
 in order to find out the name(s) of the function(s) they are expected to write.
-It is our belief that students should only examine the test cases as a last resort.
+It is our opinion students should only examine the test cases as a last resort.
 
 ### The slug-name-example.apl
 
@@ -158,12 +158,11 @@ to an infinite loop as the GNU APL interpreter juggles exceptions deep within it
 I find this last behaviour obliges me to kill the APL interpreter from another command line.
 
 There are several cases in GNU APL of the interpreter behaving in a sane manner when used interactively
-but not so when using the GNU APL test harness.  This is one of them.
+but not so when using the GNU APL test case framework.  This is one of them.
 I think this is retribution on the part of GNL APL for breaking the Exercism commandment
 "Thou shall not use lambda functions".
 
-There is little Exercism or I can do about these but they may eventually push me to abandon the
-GNU APL test harness and so compatibility with the Exercism track.
+There is little Exercism or I can do about these but they may eventually push me to abandon the GNU APL test case framework.
 
 
 ## Week 1
@@ -280,8 +279,8 @@ This exercise brought another issue to the forefront.
 In APL, `1` is an scalar, `,1` is an vector but, when printed, both are represented by `1`.
 This sometimes is convenient and other times inconvenient.
 
-The GNU APL test case harness compares letter-for-letter so a function may return either a scalar or a vector length 1 for this special case/
-However, if another function wants to use the result of the first this really can be a bind.
+The GNU APL test case harness compares letter-for-letter so a function may return either a scalar or a vector length 1 for this special case.
+However, if another function wants to use the result of the first this can be a real bind.
 
 Policy is now that:
 
@@ -293,7 +292,29 @@ When a similar issue arises for numbers, the situation will be reviewed but it i
 Hand modification of `perfect-numbers.apl` was required:  the definition of an 'enumeration' `{deficient, perfect, abundant}` is beyond the scope of the EGP.
 
 Hand modification of `bob.rc` was required:  the multi-line test cases were removed.
-I do not think APL can handle multi-line input.
+I do not think APL can handle multi-line 'terminal' input.
 
 The 'diamond' exercise is unusual in that it 'draws' a shape.
 Its test cases are better using the letter-by-letter comparison, which is now directed by the `-c=r` flag.
+
+## Week 4
+
+The exercises undertaken during week 4 were:
+
+  * acronym
+  * variable-length-quantity
+  * run-length-encoding
+  * crypto-square
+  * armstrong-numbers
+  * two-fer
+  * reverse-string
+
+Some of these I have not done before.  They were all simple.
+
+The 'variable-length-quantity' exercise led to the introduction of a hexadecimal string type.
+It also led to consideration of deliberately generating a file that could not be used 'as is' to force hand correction but the idea was dropped.
+
+For the 'two-fer' exercise the `-p=name` flag was introduced to override the function name provided in the `canonical-data.json` file.
+The 'two-fer' exercise was the first with an 'optional' parameter.
+You cannot have optional parameters in APL.
+It was a case of substitute `''` or drop the exercise altogether.
