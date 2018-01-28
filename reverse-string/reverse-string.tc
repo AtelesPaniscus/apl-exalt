@@ -1,0 +1,42 @@
+log←'./reverse-string.tc.log'
+⍎ ')COPY ',(⎕FIO 30),'/../../test.apl'
+
+⍝ assert a match
+
+∇ R ← A assert∆match B
+    R ← A ≡ B
+    → R / exit
+    R ← 1⎕CR A
+exit:
+∇
+
+test∆copy_relative 'reverse-string.apl'
+test∆clear_log log
+
+⍝ check test version
+  1⎕CR	(version)
+'1.0.1'
+
+⍝ ∇reverse
+
+⍝ an empty string
+  (reverse '') assert∆match ''
+1
+
+⍝ a word
+  (reverse 'robot') assert∆match 'tobor'
+1
+
+⍝ a capitalized word
+  (reverse 'Ramen') assert∆match 'nemaR'
+1
+
+⍝ a sentence with punctuation
+  (reverse 'I''m hungry!') assert∆match '!yrgnuh m''I'
+1
+
+⍝ a palindrome
+  (reverse 'racecar') assert∆match 'racecar'
+1
+
+test∆show_log log
