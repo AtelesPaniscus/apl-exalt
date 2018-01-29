@@ -1,0 +1,70 @@
+log←'./phone-number.tc.log'
+⍎ ')COPY ',(⎕FIO 30),'/../../test.apl'
+
+⍝ assert a match
+
+∇ R ← A assert∆match B
+    R ← A ≡ B
+    → R / exit
+    R ← 1⎕CR A
+exit:
+∇
+
+test∆copy_relative 'phone-number.apl'
+test∆clear_log log
+
+⍝ check test version
+  1⎕CR	(version)
+'1.2.0'
+
+⍝ ∇clean
+
+⍝ cleans the number
+  (clean '(223) 456-7890') assert∆match '2234567890'
+1
+
+⍝ cleans numbers with dots
+  (clean '223.456.7890') assert∆match '2234567890'
+1
+
+⍝ cleans numbers with multiple spaces
+  (clean '223 456   7890   ') assert∆match '2234567890'
+1
+
+⍝ invalid when 9 digits
+  1⎕CR test∆try 'clean ''123456789'''
+1 'DOMAIN ERROR'
+
+⍝ invalid when 11 digits does not start with a 1
+  1⎕CR test∆try 'clean ''22234567890'''
+1 'DOMAIN ERROR'
+
+⍝ valid when 11 digits and starting with 1
+  (clean '12234567890') assert∆match '2234567890'
+1
+
+⍝ valid when 11 digits and starting with 1 even with punctuation
+  (clean '+1 (223) 456-7890') assert∆match '2234567890'
+1
+
+⍝ invalid when more than 11 digits
+  1⎕CR test∆try 'clean ''321234567890'''
+1 'DOMAIN ERROR'
+
+⍝ invalid with letters
+  1⎕CR test∆try 'clean ''123-abc-7890'''
+1 'DOMAIN ERROR'
+
+⍝ invalid with punctuations
+  1⎕CR test∆try 'clean ''123-@:!-7890'''
+1 'DOMAIN ERROR'
+
+⍝ invalid if area code does not start with 2-9
+  1⎕CR test∆try 'clean ''(123) 456-7890'''
+1 'DOMAIN ERROR'
+
+⍝ invalid if exchange code does not start with 2-9
+  1⎕CR test∆try 'clean ''(223) 056-7890'''
+1 'DOMAIN ERROR'
+
+test∆show_log log
