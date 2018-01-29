@@ -30,7 +30,7 @@ should all produce the output
 
 ## Source
 
-Event Manager by JumpstartLab [http://tutorials.jumpstartlab.com/projects/eventmanager.html](http://tutorials.jumpstartlab.com/projects/eventmanager.html)
+[Event Manager](http://tutorials.jumpstartlab.com/projects/eventmanager.html) by JumpstartLab.
 
 ## Submitting Incomplete Solutions
 
