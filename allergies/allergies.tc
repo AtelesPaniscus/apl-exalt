@@ -1,0 +1,80 @@
+log←'./allergies.tc.log'
+⍎ ')COPY ',(⎕FIO 30),'/../../test.apl'
+
+⍝ assert a match
+
+∇ R ← A assert∆match B
+    R ← A ≡ B
+    → R / exit
+    R ← 1⎕CR A
+exit:
+∇
+
+test∆copy_relative 'allergies.apl'
+test∆clear_log log
+
+⍝ check test version
+  1⎕CR	(version)
+'1.1.0'
+
+⍝ ∇allergicTo
+
+⍝ no allergies means not allergic
+  0 allergicTo 'peanuts'
+0
+  0 allergicTo 'cats'
+0
+  0 allergicTo 'strawberries'
+0
+
+⍝ is allergic to eggs
+  1 allergicTo 'eggs'
+1
+
+⍝ allergic to eggs in addition to other stuff
+  5 allergicTo 'eggs'
+1
+  5 allergicTo 'shellfish'
+1
+  5 allergicTo 'strawberries'
+0
+
+⍝ ∇list
+
+⍝ no allergies at all
+  (list 0) assert∆match ''
+1
+
+⍝ allergic to just eggs
+  (list 1) assert∆match ,⊂'eggs'
+1
+
+⍝ allergic to just peanuts
+  (list 2) assert∆match ,⊂'peanuts'
+1
+
+⍝ allergic to just strawberries
+  (list 8) assert∆match ,⊂'strawberries'
+1
+
+⍝ allergic to eggs and peanuts
+  (list 3) assert∆match 'eggs' 'peanuts'
+1
+
+⍝ allergic to more than eggs but not peanuts
+  (list 5) assert∆match 'eggs' 'shellfish'
+1
+
+⍝ allergic to lots of stuff
+  (list 248) assert∆match 'strawberries' 'tomatoes' 'chocolate' 'pollen' 'cats'
+1
+
+⍝ allergic to everything
+  (list 255) assert∆match 'eggs' 'peanuts' 'shellfish' 'strawberries' 'tomatoes' 'chocolate' 'pollen' 'cats'
+1
+
+⍝ ignore non allergen score parts
+  (list 509) assert∆match 'eggs' 'shellfish' 'strawberries' 'tomatoes' 'chocolate' 'pollen' 'cats'
+1
+
+test∆show_log log
