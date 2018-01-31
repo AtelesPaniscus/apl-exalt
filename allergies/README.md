@@ -31,7 +31,7 @@ score is 257, your program should only report the eggs (1) allergy.
 
 ## Source
 
-Jumpstart Lab Warm-up [http://jumpstartlab.com](http://jumpstartlab.com)
+[Jumpstart Lab Warm-up](http://jumpstartlab.com).
 
 ## Submitting Incomplete Solutions
 
