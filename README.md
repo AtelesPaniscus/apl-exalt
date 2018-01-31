@@ -318,3 +318,31 @@ For the 'two-fer' exercise the `-p=name` flag was introduced to override the fun
 The 'two-fer' exercise was the first with an 'optional' parameter.
 You cannot have optional parameters in APL.
 It was a case of substitute `''` or drop the exercise altogether.
+
+## Week 5
+
+The exercises undertaken during week 5 were:
+
+  * phone-number
+  * connect
+  * allergies
+
+These were done to finish off the month of January.
+These again illustrate the thin line this project walks.
+
+The 'phone-number' exercise was the first where the possibility of different 'bad' test cases needing to generate different APL errors arises.
+Since this is beyond the scope of the current EGP design, it was decided not to try this.
+
+The 'connect' exercise challenge me, not the EGP.
+APL is great for expressing solutions to certain classes of problems in just a couple of lines.
+For other classes of problem, a couple of lines is not sufficient.
+Writing and debugging solution quickly becomes very difficult, especially with limited and buggy support for lambda functions.
+
+The 'allergies' exercise presented two challenges.
+
+First, it introduces new semantics in the `canonical-data.json` file.
+This has been special cased in a general manner in the EGP but to do this the EGP test case generation code was heavily refactored.
+
+Second, it is not the only exercise that requires the student implement more than one function but is is the only one so far where the two functions have different signatures.
+Since this is beyond the scope of the current EGP design, but could not be solved by hand correction.
+For now a hack is hard-coded in the 'new semantics' special case code.

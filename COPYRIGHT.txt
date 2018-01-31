@@ -1,0 +1,24 @@
+This project uses a 'code generator'.
+
+The source files used by the generator are not part of the project but come
+from the Exercism Project (http://exercism.io/).
+
+The files produced by the generator may be considered 'derived works' and the
+Exercism Project may claim copyright.  You're welcome. :)
+
+The rest of the project's source files are copyright Ateles Paniscus
+(AtelesPaniscus@users.noreply.github.com).
+
+Each exericse is represented by a subdirectory that contains four files. E.g.
+
+  * hello-world.apl
+  * hello-world-example.apl
+  * hello-world.tc
+  * README.md
+
+Files named *-example.apl are copyright Ateles Paniscus.  The other three in
+each subdirectory are derived works.
+
+All other project files are copyright Ateles Paniscus.
+
+All project files are available under the MIT Licence used by the Exercism project.
