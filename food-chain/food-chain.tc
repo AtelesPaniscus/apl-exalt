@@ -1,0 +1,157 @@
+log←'./food-chain.tc.log'
+⍎ ')COPY ',(⎕FIO 30),'/../../test.apl'
+
+⍝ assert verse
+
+⎕PW ← 96
+
+∇ assert∆verse B
+    ⎕ ← B
+∇
+
+test∆copy_relative 'food-chain.apl'
+test∆clear_log log
+
+⍝ check test version
+  1⎕CR	(version)
+'2.0.0'
+
+⍝ ∇recite
+
+⍝ fly
+  assert∆verse¨ 1 recite 1
+I know an old lady who swallowed a fly.
+I don't know why she swallowed the fly. Perhaps she'll die.
+
+⍝ spider
+  assert∆verse¨ 2 recite 2
+I know an old lady who swallowed a spider.
+It wriggled and jiggled and tickled inside her.
+She swallowed the spider to catch the fly.
+I don't know why she swallowed the fly. Perhaps she'll die.
+
+⍝ bird
+  assert∆verse¨ 3 recite 3
+I know an old lady who swallowed a bird.
+How absurd to swallow a bird!
+She swallowed the bird to catch the spider that wriggled and jiggled and tickled inside her.
+She swallowed the spider to catch the fly.
+I don't know why she swallowed the fly. Perhaps she'll die.
+
+⍝ cat
+  assert∆verse¨ 4 recite 4
+I know an old lady who swallowed a cat.
+Imagine that, to swallow a cat!
+She swallowed the cat to catch the bird.
+She swallowed the bird to catch the spider that wriggled and jiggled and tickled inside her.
+She swallowed the spider to catch the fly.
+I don't know why she swallowed the fly. Perhaps she'll die.
+
+⍝ dog
+  assert∆verse¨ 5 recite 5
+I know an old lady who swallowed a dog.
+What a hog, to swallow a dog!
+She swallowed the dog to catch the cat.
+She swallowed the cat to catch the bird.
+She swallowed the bird to catch the spider that wriggled and jiggled and tickled inside her.
+She swallowed the spider to catch the fly.
+I don't know why she swallowed the fly. Perhaps she'll die.
+
+⍝ goat
+  assert∆verse¨ 6 recite 6
+I know an old lady who swallowed a goat.
+Just opened her throat and swallowed a goat!
+She swallowed the goat to catch the dog.
+She swallowed the dog to catch the cat.
+She swallowed the cat to catch the bird.
+She swallowed the bird to catch the spider that wriggled and jiggled and tickled inside her.
+She swallowed the spider to catch the fly.
+I don't know why she swallowed the fly. Perhaps she'll die.
+
+⍝ cow
+  assert∆verse¨ 7 recite 7
+I know an old lady who swallowed a cow.
+I don't know how she swallowed a cow!
+She swallowed the cow to catch the goat.
+She swallowed the goat to catch the dog.
+She swallowed the dog to catch the cat.
+She swallowed the cat to catch the bird.
+She swallowed the bird to catch the spider that wriggled and jiggled and tickled inside her.
+She swallowed the spider to catch the fly.
+I don't know why she swallowed the fly. Perhaps she'll die.
+
+⍝ horse
+  assert∆verse¨ 8 recite 8
+I know an old lady who swallowed a horse.
+She's dead, of course!
+
+⍝ multiple verses
+  assert∆verse¨ 1 recite 3
+I know an old lady who swallowed a fly.
+I don't know why she swallowed the fly. Perhaps she'll die.
+
+I know an old lady who swallowed a spider.
+It wriggled and jiggled and tickled inside her.
+She swallowed the spider to catch the fly.
+I don't know why she swallowed the fly. Perhaps she'll die.
+
+I know an old lady who swallowed a bird.
+How absurd to swallow a bird!
+She swallowed the bird to catch the spider that wriggled and jiggled and tickled inside her.
+She swallowed the spider to catch the fly.
+I don't know why she swallowed the fly. Perhaps she'll die.
+
+⍝ full song
+  assert∆verse¨ 1 recite 8
+I know an old lady who swallowed a fly.
+I don't know why she swallowed the fly. Perhaps she'll die.
+
+I know an old lady who swallowed a spider.
+It wriggled and jiggled and tickled inside her.
+She swallowed the spider to catch the fly.
+I don't know why she swallowed the fly. Perhaps she'll die.
+
+I know an old lady who swallowed a bird.
+How absurd to swallow a bird!
+She swallowed the bird to catch the spider that wriggled and jiggled and tickled inside her.
+She swallowed the spider to catch the fly.
+I don't know why she swallowed the fly. Perhaps she'll die.
+
+I know an old lady who swallowed a cat.
+Imagine that, to swallow a cat!
+She swallowed the cat to catch the bird.
+She swallowed the bird to catch the spider that wriggled and jiggled and tickled inside her.
+She swallowed the spider to catch the fly.
+I don't know why she swallowed the fly. Perhaps she'll die.
+
+I know an old lady who swallowed a dog.
+What a hog, to swallow a dog!
+She swallowed the dog to catch the cat.
+She swallowed the cat to catch the bird.
+She swallowed the bird to catch the spider that wriggled and jiggled and tickled inside her.
+She swallowed the spider to catch the fly.
+I don't know why she swallowed the fly. Perhaps she'll die.
+
+I know an old lady who swallowed a goat.
+Just opened her throat and swallowed a goat!
+She swallowed the goat to catch the dog.
+She swallowed the dog to catch the cat.
+She swallowed the cat to catch the bird.
+She swallowed the bird to catch the spider that wriggled and jiggled and tickled inside her.
+She swallowed the spider to catch the fly.
+I don't know why she swallowed the fly. Perhaps she'll die.
+
+I know an old lady who swallowed a cow.
+I don't know how she swallowed a cow!
+She swallowed the cow to catch the goat.
+She swallowed the goat to catch the dog.
+She swallowed the dog to catch the cat.
+She swallowed the cat to catch the bird.
+She swallowed the bird to catch the spider that wriggled and jiggled and tickled inside her.
+She swallowed the spider to catch the fly.
+I don't know why she swallowed the fly. Perhaps she'll die.
+
+I know an old lady who swallowed a horse.
+She's dead, of course!
+
+test∆show_log log
