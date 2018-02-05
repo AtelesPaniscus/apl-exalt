@@ -65,7 +65,7 @@ She's dead, of course!
 
 ## Source
 
-Wikipedia [http://en.wikipedia.org/wiki/There_Was_an_Old_Lady_Who_Swallowed_a_Fly](http://en.wikipedia.org/wiki/There_Was_an_Old_Lady_Who_Swallowed_a_Fly)
+[There Was an Old Lady Who Swallowed a Fly](http://en.wikipedia.org/wiki/There_Was_an_Old_Lady_Who_Swallowed_a_Fly) at Wikipedia.
 
 ## Submitting Incomplete Solutions
 
