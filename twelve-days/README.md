@@ -30,7 +30,7 @@ On the twelfth day of Christmas my true love gave to me, twelve Drummers Drummin
 
 ## Source
 
-Wikipedia [http://en.wikipedia.org/wiki/The_Twelve_Days_of_Christmas_(song)](http://en.wikipedia.org/wiki/The_Twelve_Days_of_Christmas_(song))
+[The Twelve Days of Christmas](http://en.wikipedia.org/wiki/The_Twelve_Days_of_Christmas_(song)) Christmas carol on Wikipedia.
 
 ## Submitting Incomplete Solutions
 
