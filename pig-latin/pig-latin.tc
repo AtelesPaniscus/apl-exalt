@@ -1,0 +1,120 @@
+log←'./pig-latin.tc.log'
+⍎ ')COPY ',(⎕FIO 30),'/../../test.apl'
+
+⍝ assert a match
+
+∇ R ← A assert∆match B
+    R ← A ≡ B
+    → R / exit
+    R ← 1⎕CR A
+exit:
+∇
+
+test∆copy_relative 'pig-latin.apl'
+test∆clear_log log
+
+⍝ check test version
+  1⎕CR	(version)
+'1.1.0'
+
+⍝ ∇translate
+
+⍝ word beginning with a
+  (translate 'apple') assert∆match 'appleay'
+1
+
+⍝ word beginning with e
+  (translate 'ear') assert∆match 'earay'
+1
+
+⍝ word beginning with i
+  (translate 'igloo') assert∆match 'iglooay'
+1
+
+⍝ word beginning with o
+  (translate 'object') assert∆match 'objectay'
+1
+
+⍝ word beginning with u
+  (translate 'under') assert∆match 'underay'
+1
+
+⍝ word beginning with a vowel and followed by a qu
+  (translate 'equal') assert∆match 'equalay'
+1
+
+⍝ ∇translate
+
+⍝ word beginning with p
+  (translate 'pig') assert∆match 'igpay'
+1
+
+⍝ word beginning with k
+  (translate 'koala') assert∆match 'oalakay'
+1
+
+⍝ word beginning with x
+  (translate 'xenon') assert∆match 'enonxay'
+1
+
+⍝ word beginning with q without a following u
+  (translate 'qat') assert∆match 'atqay'
+1
+
+⍝ ∇translate
+
+⍝ word beginning with ch
+  (translate 'chair') assert∆match 'airchay'
+1
+
+⍝ word beginning with qu
+  (translate 'queen') assert∆match 'eenquay'
+1
+
+⍝ word beginning with qu and a preceding consonant
+  (translate 'square') assert∆match 'aresquay'
+1
+
+⍝ word beginning with th
+  (translate 'therapy') assert∆match 'erapythay'
+1
+
+⍝ word beginning with thr
+  (translate 'thrush') assert∆match 'ushthray'
+1
+
+⍝ word beginning with sch
+  (translate 'school') assert∆match 'oolschay'
+1
+
+⍝ ∇translate
+
+⍝ word beginning with yt
+  (translate 'yttria') assert∆match 'yttriaay'
+1
+
+⍝ word beginning with xr
+  (translate 'xray') assert∆match 'xrayay'
+1
+
+⍝ ∇translate
+
+⍝ y is treated like a consonant at the beginning of a word
+  (translate 'yellow') assert∆match 'ellowyay'
+1
+
+⍝ y is treated like a vowel at the end of a consonant cluster
+  (translate 'rhythm') assert∆match 'ythmrhay'
+1
+
+⍝ y as second letter in two letter word
+  (translate 'my') assert∆match 'ymay'
+1
+
+⍝ ∇translate
+
+⍝ a whole phrase
+  (translate 'quick fast run') assert∆match 'ickquay astfay unray'
+1
+
+test∆show_log log
