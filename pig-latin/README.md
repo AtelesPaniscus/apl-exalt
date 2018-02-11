@@ -15,11 +15,11 @@ to understand.
 There are a few more rules for edge cases, and there are regional
 variants too.
 
-See <http://en.wikipedia.org/wiki/Pig_latin> for more details.
+See [Pig Latin](http://en.wikipedia.org/wiki/Pig_latin) at Wikipedia for more details.
 
 ## Source
 
-The Pig Latin exercise at Test First Teaching by Ultrasaurus [https://github.com/ultrasaurus/test-first-teaching/blob/master/learn_ruby/pig_latin/](https://github.com/ultrasaurus/test-first-teaching/blob/master/learn_ruby/pig_latin/)
+The [Pig Latin](https://github.com/ultrasaurus/test-first-teaching/blob/master/learn_ruby/pig_latin/) exercise at Test First Teaching by Ultrasaurus.
 
 ## Submitting Incomplete Solutions
 
