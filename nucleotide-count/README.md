@@ -14,7 +14,7 @@ Here is an analogy:
 
 ## Source
 
-The Calculating DNA Nucleotides_problem at Rosalind [http://rosalind.info/problems/dna/](http://rosalind.info/problems/dna/)
+The [Calculating DNA Nucleotides](http://rosalind.info/problems/dna/) problem at Rosalind.
 
 ## Submitting Incomplete Solutions
 
