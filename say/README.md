@@ -64,7 +64,7 @@ Use _and_ (correctly) when spelling out the number in English:
 
 ## Source
 
-A variation on JavaRanch CattleDrive, exercise 4a [http://www.javaranch.com/say.jsp](http://www.javaranch.com/say.jsp)
+A variation on [JavaRanch CattleDrive, exercise 4a](http://www.javaranch.com/say.jsp)
 
 ## Submitting Incomplete Solutions
 
