@@ -1,0 +1,92 @@
+log←'./palindrome-products.tc.log'
+⍎ ')COPY ',(⎕FIO 30),'/../../test.apl'
+
+⍝ assert a match
+
+∇ R ← A assert∆match B
+    R ← A ≡ B
+    → R / exit
+    R ← 1⎕CR A
+exit:
+∇
+
+test∆copy_relative 'palindrome-products.apl'
+test∆clear_log log
+
+⍝ check test version
+  1⎕CR	(version)
+'1.0.0'
+
+⍝ ∇smallest
+
+⍝ finds the smallest palindrome from single digit factors
+  (1 smallest 9) assert∆match 1 2 ⍴ 1 1
+1
+
+⍝ ∇largest
+
+⍝ finds the largest palindrome from single digit factors
+  (1 largest 9) assert∆match 2 2 ⍴ 1 9 3 3
+1
+
+⍝ ∇smallest
+
+⍝ find the smallest palindrome from double digit factors
+  (10 smallest 99) assert∆match 1 2 ⍴ 11 11
+1
+
+⍝ ∇largest
+
+⍝ find the largest palindrome from double digit factors
+  (10 largest 99) assert∆match 1 2 ⍴ 91 99
+1
+
+⍝ ∇smallest
+
+⍝ find smallest palindrome from triple digit factors
+  (100 smallest 999) assert∆match 1 2 ⍴ 101 101
+1
+
+⍝ ∇largest
+
+⍝ find the largest palindrome from triple digit factors
+  (100 largest 999) assert∆match 1 2 ⍴ 913 993
+1
+
+⍝ ∇smallest
+
+⍝ find smallest palindrome from four digit factors
+  (1000 smallest 9999) assert∆match 1 2 ⍴ 1001 1001
+1
+
+⍝ ∇largest
+
+⍝ find the largest palindrome from four digit factors
+  (1000 largest 9999) assert∆match 1 2 ⍴ 9901 9999
+1
+
+⍝ ∇smallest
+
+⍝ empty result for smallest if no palindrome in the range
+  1⎕CR test∆try '1002 smallest 1003'
+1 'VALUE ERROR'
+
+⍝ ∇largest
+
+⍝ empty result for largest if no palindrome in the range
+  1⎕CR test∆try '15 largest 15'
+1 'VALUE ERROR'
+
+⍝ ∇smallest
+
+⍝ error result for smallest if min is more than max
+  1⎕CR test∆try '10000 smallest 1'
+1 'VALUE ERROR'
+
+⍝ ∇largest
+
+⍝ error result for largest if min is more than max
+  1⎕CR test∆try '2 largest 1'
+1 'VALUE ERROR'
+
+test∆show_log log
