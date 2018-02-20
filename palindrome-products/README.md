@@ -34,7 +34,7 @@ The largest palindrome product is `9009`. Its factors are `(91, 99)`.
 
 ## Source
 
-Problem 4 at Project Euler [http://projecteuler.net/problem=4](http://projecteuler.net/problem=4)
+[Problem 4](http://projecteuler.net/problem=4) at Project Euler.
 
 ## Submitting Incomplete Solutions
 
