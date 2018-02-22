@@ -1,0 +1,74 @@
+log←'./sum-of-multiples.tc.log'
+⍎ ')COPY ',(⎕FIO 30),'/../../test.apl'
+
+⍝ assert a match
+
+∇ R ← A assert∆match B
+    R ← A ≡ B
+    → R / exit
+    R ← 1⎕CR A
+exit:
+∇
+
+test∆copy_relative 'sum-of-multiples.apl'
+test∆clear_log log
+
+⍝ check test version
+  1⎕CR	(version)
+'1.1.0'
+
+⍝ ∇sum
+
+⍝ multiples of 3 or 5 up to 1
+  (1 sum 3 5) assert∆match 0
+1
+
+⍝ multiples of 3 or 5 up to 4
+  (4 sum 3 5) assert∆match 3
+1
+
+⍝ multiples of 3 up to 7
+  (7 sum ,3) assert∆match 9
+1
+
+⍝ multiples of 3 or 5 up to 10
+  (10 sum 3 5) assert∆match 23
+1
+
+⍝ multiples of 3 or 5 up to 100
+  (100 sum 3 5) assert∆match 2318
+1
+
+⍝ multiples of 3 or 5 up to 1000
+  (1000 sum 3 5) assert∆match 233168
+1
+
+⍝ multiples of 7, 13 or 17 up to 20
+  (20 sum 7 13 17) assert∆match 51
+1
+
+⍝ multiples of 4 or 6 up to 15
+  (15 sum 4 6) assert∆match 30
+1
+
+⍝ multiples of 5, 6 or 8 up to 150
+  (150 sum 5 6 8) assert∆match 4419
+1
+
+⍝ multiples of 5 or 25 up to 51
+  (51 sum 5 25) assert∆match 275
+1
+
+⍝ multiples of 43 or 47 up to 10000
+  (10000 sum 43 47) assert∆match 2203160
+1
+
+⍝ multiples of 1 up to 100
+  (100 sum ,1) assert∆match 4950
+1
+
+⍝ multiples of an empty list up to 10000
+  (10000 sum ⍬) assert∆match 0
+1
+
+test∆show_log log
