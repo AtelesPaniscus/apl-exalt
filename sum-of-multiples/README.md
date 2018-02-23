@@ -10,7 +10,7 @@ The sum of these multiples is 78.
 
 ## Source
 
-A variation on Problem 1 at Project Euler [http://projecteuler.net/problem=1](http://projecteuler.net/problem=1)
+A variation on [Problem 1](http://projecteuler.net/problem=1) at Project Euler
 
 ## Submitting Incomplete Solutions
 
