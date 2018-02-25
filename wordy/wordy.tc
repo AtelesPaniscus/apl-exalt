@@ -1,0 +1,86 @@
+log←'./wordy.tc.log'
+⍎ ')COPY ',(⎕FIO 30),'/../../test.apl'
+
+⍝ assert a match
+
+∇ R ← A assert∆match B
+    R ← A ≡ B
+    → R / exit
+    R ← 1⎕CR A
+exit:
+∇
+
+test∆copy_relative 'wordy.apl'
+test∆clear_log log
+
+⍝ check test version
+  1⎕CR	(version)
+'1.0.0'
+
+⍝ ∇answer
+
+⍝ addition
+  (answer 'What is 1 plus 1?') assert∆match 2
+1
+
+⍝ more addition
+  (answer 'What is 53 plus 2?') assert∆match 55
+1
+
+⍝ addition with negative numbers
+  (answer 'What is -1 plus -10?') assert∆match -11
+1
+
+⍝ large addition
+  (answer 'What is 123 plus 45678?') assert∆match 45801
+1
+
+⍝ subtraction
+  (answer 'What is 4 minus -12?') assert∆match 16
+1
+
+⍝ multiplication
+  (answer 'What is -3 multiplied by 25?') assert∆match -75
+1
+
+⍝ division
+  (answer 'What is 33 divided by -3?') assert∆match -11
+1
+
+⍝ multiple additions
+  (answer 'What is 1 plus 1 plus 1?') assert∆match 3
+1
+
+⍝ addition and subtraction
+  (answer 'What is 1 plus 5 minus -2?') assert∆match 8
+1
+
+⍝ multiple subtraction
+  (answer 'What is 20 minus 4 minus 13?') assert∆match 3
+1
+
+⍝ subtraction then addition
+  (answer 'What is 17 minus 6 plus 3?') assert∆match 14
+1
+
+⍝ multiple multiplication
+  (answer 'What is 2 multiplied by -2 multiplied by 3?') assert∆match -12
+1
+
+⍝ addition and multiplication
+  (answer 'What is -3 plus 7 multiplied by -2?') assert∆match -8
+1
+
+⍝ multiple division
+  (answer 'What is -12 divided by 2 divided by -3?') assert∆match 2
+1
+
+⍝ unknown operation
+  1⎕CR test∆try 'answer ''What is 52 cubed?'''
+1 'DOMAIN ERROR'
+
+⍝ Non math question
+  1⎕CR test∆try 'answer ''Who is the President of the United States?'''
+1 'DOMAIN ERROR'
+
+test∆show_log log
