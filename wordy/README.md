@@ -43,17 +43,9 @@ left-to-right, _ignoring the typical order of operations._
 
 15  (i.e. not 9)
 
-## Bonus — Exponentials
-
-If you'd like, handle exponentials.
-
-> What is 2 raised to the 5th power?
-
-32
-
 ## Source
 
-Inspired by one of the generated questions in the Extreme Startup game. [https://github.com/rchatley/extreme_startup](https://github.com/rchatley/extreme_startup)
+Inspired by one of the generated questions in the [Extreme Startup](https://github.com/rchatley/extreme_startup) game.
 
 ## Submitting Incomplete Solutions
 
