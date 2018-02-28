@@ -346,3 +346,43 @@ This has been special cased in a general manner in the EGP but to do this the EG
 Second, it is not the only exercise that requires the student implement more than one function but is is the only one so far where the two functions have different signatures.
 Since this is beyond the scope of the current EGP design, but could not be solved by hand correction.
 For now a hack is hard-coded in the 'new semantics' special case code.
+
+## February 2018
+
+The exercises undertaken during February were:
+
+  * beer-song
+  * food-chain
+  * twelve-days
+  * pig-latin
+  * nucleotide-count
+  * say
+  * palindrome-products
+  * sum-of-multiples
+  * wordy
+
+These were chosen so that some extension of the EGP would be necessary but not too much in too short a space of time.
+
+The `beer-song`, `food-chain` and `twelve-days` exercises all produced lots of output that cannot be passed on one line to `assert∆match` for comparison.
+It was decided to let the test harness compare the output a line at a time.
+The EGP recognises `-c=v` as indicating it should select `assert∆verse` instead of `assert∆match`.
+All `assert∆verse` does it print the solution's output (a vector of lines of verse) one line at a time for the benefit of the test harness and students.
+The EGP recognises `-pw=` and generates code to set the GNU APL print width (⎕PW) to a suitably large value that means the interpreter does not wrap the lines output.
+
+The second set of extensions came with `nucleotide-count` and `palindrome-products`, which seem to call for solutions that return more than just
+a simple scalar or vector.
+HINTS.md` files were added to tell students what their solutions must return to pass the test cases and the EGP altered to tell students to read the hints.
+
+The `canonical-data-json` file for the `nucleotide-count` exercise implies solutions return a collection of `{nucleotide, count}` pairs,
+although the canonical `description.md` would allow just a list of counts.
+The EGP accepts `-t=cn` as indicating an array with rows that contain a character and an integer.
+
+The canonical `description.md` for the `palindrome-products` exercise says solutions must return both the product and its factors.
+APL functions can have only one result.
+The EGP accepts `-r` as indicating which (`=factors` in this case).
+
+For both these exercises, the EGP selects `assert∆match` but produces code to reshape the reference data for comparison.
+
+The `sum-of-multiples` exercise forced a small rethink of the `-n` flag.
+For exercises with 2 parameters, this flag may be used to either swap the parameters (wrt to `canonical-data-json`) or rename the parameters:
+it cannot do both.
