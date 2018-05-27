@@ -1,0 +1,127 @@
+#!/bin/bash --posix
+
+##
+##  Goal:   provide an alternative means of running test cases
+##
+##  Use:    cd $slugname
+##          slugtest [--tc|--apl] [$slugname]
+##
+##  where:  slugname is the name of an Exercism exercise
+##
+##  Flags:  --tc    (default) generate and run test cases
+##          --apl   generate and run as a script
+##
+##  The slug directory is expected to contain:
+##    - $slugname.apl - a solution for the slug exercise
+##    - $slugname.tc  - the test cases $slugname.apl must pass
+##
+##  By default and with the -tc flag, the script generates slug.tc,
+##  which is a concatenation of those two with no external dependencies.
+##
+##  The script then runs GNU APL in testcase mode on slug.tc.
+##  This produces two log files that may aid in debugging.
+##
+##  Should GNU APL misbehave, then try running slugtest -apl.
+##  The generated the file is named 'slug.apl' but has the same contents as
+##  'slug.tc'.  The script runs GNU APL in script mode on slug.apl.
+##
+##  GNU APL should not misbehave.  Look for and fix test cases that fail with
+##  INDEX ERROR or similar before retrying in testcase mode.
+##
+
+# © PaniscusAteles, 2018.  Available under an MIT License terms
+
+if [[ -z "${APL_EXALT}" ]]; then
+    echo "APL_EXALT not defined: source apl-exalt.rc in the directory in which you find it";
+    exit 1;
+fi
+
+usage() { (sed -e "/^###/d" -e "/^##/!d" $0 && echo -e "\e[35m${0##*/}: \e[31m$@\e[0m") >&2; }
+
+testName="slug.tc";
+
+while [[ -n "${1%%[!-]*}" ]]; do
+    case $1 in
+      (--tc)
+        testName="slug.tc";
+        shift;
+        ;;
+      (--apl)
+        testName="slug.apl";
+        shift;
+        ;;
+      (--help)
+        usage "I hope that was helpful";
+        exit 1;
+        ;;
+      (--)
+        break;
+        ;;
+      (*)
+        usage "bad option \"$1\"";
+        exit 1;
+        ;;
+    esac
+done
+
+slugName="${1-${PWD##*/}}";
+
+function test_harness()
+{
+echo '
+⍝ Compatible with the Exercism test harness
+
+∇ response ← test∆try apl_string
+  response ← ⎕EC apl_string
+
+  → ((1 ⊃ response)) / noerror
+
+  response ← 1 (3 ⊃ response)[1;]
+  → exit
+
+noerror:
+  response ← 0 (3 ⊃ response)
+
+exit:
+∇
+';
+}
+
+function test_tail
+{
+echo '
+⍝ ----------------------------------------------------------------
+
+)RESET
+
+)OFF
+';
+}
+
+rm -f "${testName}";
+(
+    cat "${slugName}.apl";
+
+    test_harness;
+
+    sed -e "s/${slugName}.tc.log/slug.tc.log/" \
+        -e '/test.apl/d' -e '/^test∆/d' \
+         "${slugName}.tc";
+
+    test_tail;
+
+) > "${testName}";
+
+
+if [[ "${testName}" == "slug.tc" ]]; then
+
+    rm -f "${testName}.log" "${testName}.log.all";
+#    apl -s -T "${testName}" |& tr -d '\000' > "${testName}.log.all"
+    apl -s -T "${testName}" >& "${testName}.log.all"
+else
+    apl -q --noColor -f "${testName}" >& "${testName}.log";
+fi
+
+sed -e '/⍝ ------/,$d' "${testName}.log";
+
+# EOF

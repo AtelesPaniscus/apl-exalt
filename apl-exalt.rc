@@ -1,0 +1,8 @@
+#
+# Source this file
+#
+export APL_EXALT=$PWD;
+
+export PATH=$PATH:$APL_EXALT/bin;
+
+# EOF
